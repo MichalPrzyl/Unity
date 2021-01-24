@@ -13,9 +13,4 @@ public class Crosshair : MonoBehaviour
         Cursor.SetCursor(crosshairTexture, hotSpot, cursorMode);
     }
 
-    
-    void Update()
-    {
-        
-    }
 }

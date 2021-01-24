@@ -13,12 +13,6 @@ public class kura : MonoBehaviour
     public float speed;
     Vector3 EndPosition;
 
-    void Start()
-    {
-
-    }
-
-
     void Update()
     {
         timer += Time.deltaTime;
