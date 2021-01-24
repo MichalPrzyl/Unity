@@ -42,14 +42,6 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator MoveRight()
-    {
-        canMove = false;
-        transform.position = Vector3.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
-        yield return 0;
-        canMove = true;
-    }
-
     IEnumerator Move(Vector3 destination, float speed)
     {
         canMove = false;
