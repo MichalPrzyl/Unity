@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class playerShooting : MonoBehaviour
+{
+    public int posiadanaBron;
+    float szybkostrzelnosc;
+    int ilePociskowNaraz;
+
+    public GameObject bulletPrefab;
+    public float bulletSpeed;
+    Vector3 mousePos;
+    Vector3 worldPosition;
+    float timer;
+    void Start()
+    {
+
+    }
+
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        mousePos = Input.mousePosition;
+        mousePos.z = 0;
+        worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+
+
+        if (posiadanaBron == 1)
+        {
+            szybkostrzelnosc = 1;
+            ilePociskowNaraz = 1;
+            if (Input.GetMouseButton(0))
+            {
+                Strzel();
+
+            }
+        }
+        Debug.DrawLine(transform.position, worldPosition, Color.white);
+    }
+
+    void Strzel()
+    {
+        if (timer > szybkostrzelnosc)
+        {
+
+            GameObject bulletClone = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+            Vector3 dir = (worldPosition - transform.position);
+            dir.z = 0;
+            Vector3 dir2 = dir.normalized;
+
+            bulletClone.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            bulletClone.GetComponent<Rigidbody2D>().velocity = dir2 * bulletSpeed;
+
+            timer = 0;
+        }
+
+    }
+}
